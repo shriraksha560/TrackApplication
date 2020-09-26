@@ -1,37 +1,42 @@
-import '../_mockLocation';
+import { watchPositionAsync } from 'expo-location';
+//import '../_mockLocation';
+
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, PermissionsAndroid} from 'react-native';
+import {PermissionsAndroid, StyleSheet} from 'react-native';
 import {Text} from 'react-native-elements';
 import {SafeAreaView} from 'react-navigation';
-import {
-  requestPermissionsAsync,
-  watchPositionAsync,
-  Accuracy,
-} from 'expo-location';
 import Map from '../components/Map';
+//import {Context as LocationContext} from '../context/LocationContext';
 
 const TrackCreateScreen = () => {
+  //const {addLocation} = useContext(LocationContext);
+
   const [err, setErr] = useState(null);
 
   const startWatching = async () => {
     try {
-      const {granted} = await requestPermissionsAsync();
+      const granted = await PermissionsAndroid.check(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      );
 
-      if (!granted == PermissionsAndroid.PERMISSIONS.granted) {
-        throw new Error('Location permission not granted');
+      if (granted) {
+        console.log('You can use teh ACCESS_FINE_LOCATION');
+      } else {
+        console.log('ACCESS_FINE_LOCATION permission denied');
       }
+
       await watchPositionAsync(
         {
           accuracy: Accuracy.BestForNavigation,
-          timeInterval: 1000,
-          distanceInterval: 10,
+          timeInterval: 10000000,
+          distanceInterval: 20,
         },
         (location) => {
           console.log(location);
         },
       );
-    } catch (e) {
-      setErr(e);
+    } catch (err) {
+      setErr(err);
     }
   };
 
@@ -43,7 +48,7 @@ const TrackCreateScreen = () => {
     <SafeAreaView forceInset={{top: 'always'}}>
       <Text h2>Create a Track</Text>
       <Map />
-      {err ? <Text>Please enable location services</Text> : null}
+      {err ? <Text>Please grant us location access</Text> : null}
     </SafeAreaView>
   );
 };

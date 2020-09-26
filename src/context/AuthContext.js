@@ -36,11 +36,19 @@ const clearErrorMessage = (dispatch) => () => {
 const signup = (dispatch) => {
   return async ({email, password}) => {
     try {
+      console.log("1");
+
       const response = await trackerApi.post('/signup', {email, password});
       console.log(response.data);
+      console.log("2");
+
       await AsyncStorage.setItem('token', response.data.token);
+      console.log("3");
+
       //   await AsyncStorage.getItem('token');
       dispatch({type: 'signup', payload: response.data.token});
+      console.log("4");
+
       navigate('TrackList');
       //navigate to main flow
     } catch (err) {
@@ -66,9 +74,16 @@ const signout = (dispatch) => async () => {
 const signin = (dispatch) => {
   return async ({email, password}) => {
     try {
+      console.log("1");
       const response = await trackerApi.post('/signin', {email, password});
+      console.log("2");
+
       await AsyncStorage.setItem('token', response.data.token);
+      console.log("3");
+
       dispatch({type: 'signin', payload: response.data.token});
+      console.log("4");
+
       navigate('TrackList');
     } catch (e) {
       console.log('e : ' + e);

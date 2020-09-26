@@ -2,9 +2,16 @@
   package="com.trackingapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
+
+
+   
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -26,7 +33,7 @@
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
       <meta-data
       android:name="com.google.android.geo.API_KEY"
-      android:value="AIzaSyCXERasG2Mji8Ejh0Ho7sfxCTnaAp5fjBg"/>
+      android:value="AIzaSyADLH8NBoNfw27NQL3QJb1LShjeXuPuh2A"/>
    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
     </application>
