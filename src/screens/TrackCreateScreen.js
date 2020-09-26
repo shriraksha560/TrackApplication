@@ -32,6 +32,16 @@ const TrackCreateScreen = () => {
       } else {
         console.log('ACCESS_FINE_LOCATION permission denied');
       }
+      if (granted) {
+        console.log('You can use teh ACCESS_FINE_LOCATION');
+      } else {
+        console.log('ACCESS_FINE_LOCATION permission denied');
+      }
+      if (granted) {
+        console.log('You can use teh ACCESS_FINE_LOCATION');
+      } else {
+        console.log('ACCESS_FINE_LOCATION permission denied');
+      }
 
       await watchPositionAsync(
         {
