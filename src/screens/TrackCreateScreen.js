@@ -11,6 +11,8 @@ import Map from '../components/Map';
 const TrackCreateScreen = () => {
   //const {addLocation} = useContext(LocationContext);
 
+    //const {addLocation} = useContext(LocationContext);
+
   const [err, setErr] = useState(null);
 
   const startWatching = async () => {
@@ -18,6 +20,12 @@ const TrackCreateScreen = () => {
       const granted = await PermissionsAndroid.check(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       );
+
+      if (granted) {
+        console.log('You can use teh ACCESS_FINE_LOCATION');
+      } else {
+        console.log('ACCESS_FINE_LOCATION permission denied');
+      }
 
       if (granted) {
         console.log('You can use teh ACCESS_FINE_LOCATION');
